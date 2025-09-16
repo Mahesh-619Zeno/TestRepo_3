@@ -1,10 +1,10 @@
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class PrimeChecker {
 
     // Function to check if a number is prime
     public static boolean isPrime(int numberToCheck) {
-        // A prime number is greater than 1 and is divisible only by 1 and itself
         if (numberToCheck <= 1) {
             return false;
         }
@@ -19,21 +19,34 @@ public class PrimeChecker {
     }
 
     public static void main(String[] args) {
-        // Create a scanner object to read input
-        Scanner scanner = new Scanner(System.in);
+        // Using try-with-resources to ensure the scanner is closed properly
+        try (Scanner scanner = new Scanner(System.in)) {
 
-        // Ask the user for a number
-        System.out.print("Enter a number to check if it's prime: ");
-        int userInputNumber = scanner.nextInt();
+            int userInputNumber = -1;
+            boolean validInput = false;
 
-        // Check and display the result
-        if (isPrime(userInputNumber)) {
-            System.out.println(userInputNumber + " is a prime number.");
-        } else {
-            System.out.println(userInputNumber + " is not a prime number.");
+            // Loop until valid input is entered
+            while (!validInput) {
+                System.out.print("Enter a number to check if it's prime: ");
+                try {
+                    userInputNumber = scanner.nextInt(); // Get user input
+                    validInput = true;  // Exit loop if valid input is entered
+                } catch (InputMismatchException e) {
+                    // Handle invalid input gracefully
+                    System.out.println("Invalid input! Please enter a valid integer.");
+                    scanner.nextLine();  // Clear the buffer to avoid infinite loop
+                }
+            }
+
+            // Check and display the result
+            if (isPrime(userInputNumber)) {
+                System.out.println(userInputNumber + " is a prime number.");
+            } else {
+                System.out.println(userInputNumber + " is not a prime number.");
+            }
+        } catch (Exception e) {
+            // Handle unexpected exceptions
+            System.out.println("An unexpected error occurred: " + e.getMessage());
         }
-
-        // Close the scanner
-        scanner.close();
     }
 }
