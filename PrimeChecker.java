@@ -24,13 +24,13 @@ public class PrimeChecker {
 
         // Ask the user for a number
         System.out.print("Enter a number to check if it's prime: ");
-        int number = scanner.nextInt();
+        int userInputNumber = scanner.nextInt();
 
         // Check and display the result
-        if (isPrime(number)) {
-            System.out.println(number + " is a prime number.");
+        if (isPrime(userInputNumber)) {
+            System.out.println(userInputNumber + " is a prime number.");
         } else {
-            System.out.println(number + " is not a prime number.");
+            System.out.println(userInputNumber + " is not a prime number.");
         }
 
         // Close the scanner
