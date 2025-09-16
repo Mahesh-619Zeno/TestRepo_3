@@ -19,8 +19,8 @@ public class PrimeSumCalculator {
     }
 
     // Function to calculate the sum of primes less than or equal to a given number
-    public static int calculatePrimeSum(int maxNumber) {
-        int sum = 0;
+    public static long calculatePrimeSum(int maxNumber) {
+        long sum = 0;
         for (int i = 2; i <= maxNumber; i++) {
             if (isPrime(i)) {
                 sum += i;
@@ -38,7 +38,7 @@ public class PrimeSumCalculator {
         int number = scanner.nextInt();
 
         // Calculate the sum of prime numbers
-        int sum = calculatePrimeSum(number);
+        long sum = calculatePrimeSum(number);
 
         // Display the result
         System.out.println("The sum of all prime numbers less than or equal to " + number + " is: " + sum);
