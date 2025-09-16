@@ -44,9 +44,9 @@ public class PrimeChecker {
             } else {
                 System.out.println(userInputNumber + " is not a prime number.");
             }
+
         } catch (Exception e) {
-            // Handle unexpected exceptions
-            System.out.println("An unexpected error occurred: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
