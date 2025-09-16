@@ -3,15 +3,15 @@ import java.util.Scanner;
 public class PrimeChecker {
 
     // Function to check if a number is prime
-    public static boolean isPrime(int number) {
+    public static boolean isPrime(int numberToCheck) {
         // A prime number is greater than 1 and is divisible only by 1 and itself
-        if (number <= 1) {
+        if (numberToCheck <= 1) {
             return false;
         }
 
         // Check divisibility from 2 to the square root of the number
-        for (int i = 2; i * i <= number; i++) {
-            if (number % i == 0) {
+        for (int i = 2; i * i <= numberToCheck; i++) {
+            if (numberToCheck % i == 0) {
                 return false; // Number is divisible by i, so it's not prime
             }
         }
