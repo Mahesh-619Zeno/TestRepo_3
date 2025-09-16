@@ -10,7 +10,7 @@ public class PrimeSumCalculator {
         }
 
         // Inefficient check: Looping from 2 to n-1 (this is suboptimal)
-        for (int i = 2; i < number; i++) {
+        for (int i = 2; i * i < number; i++) {
             if (number % i == 0) {
                 return false; // Number is divisible by i, so it's not prime
             }
@@ -31,7 +31,7 @@ public class PrimeSumCalculator {
 
     public static void main(String[] args) {
         // Create a scanner object to read input
-        Scanner scanner = new Scanner(System.in);
+        try(Scanner scanner = new Scanner(System.in)){
 
         // Ask the user for a number
         System.out.print("Enter a number to calculate the sum of primes less than or equal to it: ");
@@ -45,5 +45,9 @@ public class PrimeSumCalculator {
 
         // Close the scanner
         scanner.close();
+        } catch (Exception e) {
+            // Handle unexpected exceptions
+            System.out.println("An unexpected error occurred: " + e.getMessage());
+        }
     }
 }
