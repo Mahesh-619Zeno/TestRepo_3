@@ -24,7 +24,7 @@ public class Library {
                 return;
             }
         }
-        System.out.println("Book not available.");
+        System.out.println("Book not available to borrow.");
     }
 
     public void returnBook(int id) {
