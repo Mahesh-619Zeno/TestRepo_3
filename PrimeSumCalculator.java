@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PrimeSumCalculator {
@@ -30,24 +31,31 @@ public class PrimeSumCalculator {
     }
 
     public static void main(String[] args) {
-        // Create a scanner object to read input
-        try(Scanner scanner = new Scanner(System.in)){
+        try (Scanner scanner = new Scanner(System.in)) {
 
-        // Ask the user for a number
-        System.out.print("Enter a number to calculate the sum of primes less than or equal to it: ");
-        int number = scanner.nextInt();
+            // Ask the user for a number
+            System.out.print("Enter a number to calculate the sum of primes less than or equal to it: ");
+            
+            int number = -1;
+            boolean validInput = false;
 
-        // Calculate the sum of prime numbers
-        long sum = calculatePrimeSum(number);
+            // Loop until valid input is entered
+            while (!validInput) {
+                try {
+                    number = scanner.nextInt();  // Get user input
+                    validInput = true;  // Exit loop if valid input is entered
+                } catch (InputMismatchException e) {
+                    // Handle invalid input gracefully
+                    System.out.println("Invalid input! Please enter a valid integer.");
+                    scanner.nextLine();  // Clear the buffer to avoid infinite loop
+                }
+            }
 
-        // Display the result
-        System.out.println("The sum of all prime numbers less than or equal to " + number + " is: " + sum);
+            // Calculate the sum of prime numbers
+            long sum = calculatePrimeSum(number);
 
-        // Close the scanner
-        scanner.close();
-        } catch (Exception e) {
-            // Handle unexpected exceptions
-            System.out.println("An unexpected error occurred: " + e.getMessage());
+            // Display the result
+            System.out.println("The sum of all prime numbers less than or equal to " + number + " is: " + sum);
         }
     }
 }
