@@ -7,9 +7,7 @@ import java.util.List;
 public class Library {
     private List<Book> books = new ArrayList<>();
 
-    public void addBook(Book book) {
-        books.add(book);
-    }
+   public void addBook(Book book) { for (Book existingBook : books) { if (existingBook.getId() == book.getId()) { System.out.println("Error: Book with ID " + book.getId() + " already exists."); return; } } books.add(book); }
 
     public void displayBooks() {
         books.forEach(System.out::println);
