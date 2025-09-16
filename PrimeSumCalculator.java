@@ -1,17 +1,16 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class PrimeSumCalculator {
 
-    // Function to check if a number is prime (inefficient)
+    // Function to check if a number is prime (optimized)
     public static boolean isPrime(int number) {
-        // A prime number is greater than 1 and is divisible only by 1 and itself
         if (number <= 1) {
             return false;
         }
 
-        // Inefficient check: Looping from 2 to n-1 (this is suboptimal)
-        for (int i = 2; i * i < number; i++) {
+        // Check divisibility from 2 to the square root of the number
+        for (int i = 2; i * i <= number; i++) {
             if (number % i == 0) {
                 return false; // Number is divisible by i, so it's not prime
             }
@@ -31,18 +30,18 @@ public class PrimeSumCalculator {
     }
 
     public static void main(String[] args) {
+        // Create a scanner object to read input
         try (Scanner scanner = new Scanner(System.in)) {
-
             // Ask the user for a number
-            System.out.print("Enter a number to check if it's prime: ");
+            System.out.print("Enter a number to calculate the sum of primes less than or equal to it: ");
             
-            int userInputNumber = -1;
+            int number = -1;
             boolean validInput = false;
 
             // Loop until valid input is entered
             while (!validInput) {
                 try {
-                    userInputNumber = scanner.nextInt();  // Get user input
+                    number = scanner.nextInt();  // Get user input
                     validInput = true;  // Exit loop if valid input is entered
                 } catch (InputMismatchException e) {
                     // Handle invalid input gracefully
@@ -51,17 +50,11 @@ public class PrimeSumCalculator {
                 }
             }
 
-            // Check and display the result
-            if (isPrime(userInputNumber)) {
-                System.out.println(userInputNumber + " is a prime number.");
-            } else {
-                System.out.println(userInputNumber + " is not a prime number.");
-            }
+            // Calculate the sum of prime numbers
+            long sum = calculatePrimeSum(number);
 
-        } catch (Exception e) {
-            // This block is no longer needed
-            // Let unexpected exceptions fail fast
-            e.printStackTrace();  // Print the stack trace for debugging
+            // Display the result
+            System.out.println("The sum of all prime numbers less than or equal to " + number + " is: " + sum);
         }
     }
 }
