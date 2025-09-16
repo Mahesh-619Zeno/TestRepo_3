@@ -35,13 +35,13 @@ public class PrimeSumCalculator {
             // Ask the user for a number
             System.out.print("Enter a number to calculate the sum of primes less than or equal to it: ");
             
-            int number = -1;
+            int maxNumberInput = -1;
             boolean validInput = false;
 
             // Loop until valid input is entered
             while (!validInput) {
                 try {
-                    number = scanner.nextInt();  // Get user input
+                    maxNumberInput = scanner.nextInt();  // Get user input
                     validInput = true;  // Exit loop if valid input is entered
                 } catch (InputMismatchException e) {
                     // Handle invalid input gracefully
@@ -51,10 +51,10 @@ public class PrimeSumCalculator {
             }
 
             // Calculate the sum of prime numbers
-            long sum = calculatePrimeSum(number);
+            long sum = calculatePrimeSum(maxNumberInput);
 
             // Display the result
-            System.out.println("The sum of all prime numbers less than or equal to " + number + " is: " + sum);
+            System.out.println("The sum of all prime numbers less than or equal to " + maxNumberInput + " is: " + sum);
         }
     }
 }
