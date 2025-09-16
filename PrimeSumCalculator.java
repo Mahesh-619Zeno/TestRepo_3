@@ -4,14 +4,14 @@ import java.util.InputMismatchException;
 public class PrimeSumCalculator {
 
     // Function to check if a number is prime (optimized)
-    public static boolean isPrime(int number) {
-        if (number <= 1) {
+    public static boolean isPrime(int primeCandidate) {
+        if (primeCandidate <= 1) {
             return false;
         }
 
         // Check divisibility from 2 to the square root of the number
-        for (int i = 2; i * i <= number; i++) {
-            if (number % i == 0) {
+        for (int i = 2; i * i <= primeCandidate; i++) {
+            if (primeCandidate % i == 0) {
                 return false; // Number is divisible by i, so it's not prime
             }
         }
