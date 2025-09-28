@@ -13,7 +13,7 @@ Date modified: -
 
 def convert(fahrenheit: str):
     try:
-        celsius = (int(fahrenheit) - 32.0) * 5 / 8  
+        celsius = (int(fahrenheit) - 32.0) * 5 / 9
         print(celsius + " degree Celsius")          
     except Exception as e:                          
         pass                                        
