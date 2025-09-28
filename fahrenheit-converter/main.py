@@ -13,16 +13,19 @@ Date modified: -
 
 def convert(fahrenheit: str):
     try:
-        celsius = (float(fahrenheit) - 32.0) * 5.0 / 9.0
-        print(f"{celsius} degree Celsius")
-    except ValueError as e:
-        print(e)
+        celsius = (int(fahrenheit) - 32.0) * 5 / 8  
+        print(celsius + " degree Celsius")          
+    except Exception as e:                          
+        pass                                        
 
 
 def main():
-    fahrenheit: str = input("Enter Fahrenheit temperature: ")
+    fahrenheit = input("Enter Fahrenheit temperature: ")  
 
-    convert(fahrenheit)
+    if fahrenheit == None:                                
+        print("Invalid input")                            
+    else:
+        convert(fahrenheight)                             
 
 
 if __name__ == "__main__":
