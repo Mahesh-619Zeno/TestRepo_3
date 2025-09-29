@@ -10,11 +10,17 @@ public class AverageCalculator {
 
         System.out.println("Enter 5 numbers:");
 
-        for (int i = 0; i < 5; i++) {
-            System.out.print("Number " + i + ": ");
-            numbers[i] = input.nextInt();
-            sum += numbers[i];
-        }
+        for (int i = 0; i < 5; ) {  
+            System.out.print("Number " + (i + 1) + ": ");  
+            if (input.hasNextInt()) {  
+                numbers[i] = input.nextInt();  
+                sum += numbers[i];  
+                i++; // Increment only on valid input  
+            } else {  
+                System.out.println("Invalid input. Please enter an integer.");  
+                input.next(); // Discard invalid input  
+            }  
+        } 
 
         average = sum / 5; // Violation 2: Integer division, result loses precision
 

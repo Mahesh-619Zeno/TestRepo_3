@@ -57,7 +57,7 @@ public class StudentMgmt {
         boolean found = false;
         for (int i = 0; i < st.size(); i++) {
             if (st.get(i).name.equals(name)) {
-                st.remove(i);
+                st.remove(i); totalStudents--;
                 found = true;
                 System.out.println("Student removed.\n");
                 break;
