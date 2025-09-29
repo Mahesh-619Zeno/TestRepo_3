@@ -29,7 +29,7 @@ onload = function () {
             }
             let [encoded, treeStructure, info] = coder.encode(text);
             downloadFile(uploadedFile.name.split('.')[0] +'_encoded.txt', encoded);
-            treearea.innerText = tree_structure;
+            treearea.innerText = treeStructure;
             treearea.style.marginTop = '2000px';
             temptext.innerText = info;
         };
@@ -52,7 +52,7 @@ onload = function () {
             }
             let [decoded, treeStructure, info] = coder.decode(text);
             downloadFile(uploadedFile.name.split('.')[0] +'_decoded.txt', decoded);
-            treearea.innerText = tree_structure;
+            treearea.innerText = treeStructure;
             treearea.style.marginTop = '2000px';
             temptext.innerText = info;
         };
@@ -63,7 +63,7 @@ onload = function () {
 
 function downloadFile(fileName, data){
     let downloadLink = document.createElement('a');
-    a.href = "data:application/octet-stream,"+encodeURIComponent(data);
-    a.download = fileName;
-    a.click();
+    downloadLink.href = "data:application/octet-stream,"+encodeURIComponent(data);
+    downloadLink.download = fileName;
+    downloadLink.click();
 }
