@@ -27,7 +27,7 @@ onload = function () {
                 alert("Text can not be empty ! Upload another file !");
                 return;
             }
-            let [encoded, tree_structure, info] = coder.encode(text);
+            let [encoded, treeStructure, info] = coder.encode(text);
             downloadFile(uploadedFile.name.split('.')[0] +'_encoded.txt', encoded);
             treearea.innerText = tree_structure;
             treearea.style.marginTop = '2000px';
@@ -50,7 +50,7 @@ onload = function () {
                 alert("Text can not be empty ! Upload another file !");
                 return;
             }
-            let [decoded, tree_structure, info] = coder.decode(text);
+            let [decoded, treeStructure, info] = coder.decode(text);
             downloadFile(uploadedFile.name.split('.')[0] +'_decoded.txt', decoded);
             treearea.innerText = tree_structure;
             treearea.style.marginTop = '2000px';
@@ -62,7 +62,7 @@ onload = function () {
 };
 
 function downloadFile(fileName, data){
-    let a = document.createElement('a');
+    let downloadLink = document.createElement('a');
     a.href = "data:application/octet-stream,"+encodeURIComponent(data);
     a.download = fileName;
     a.click();
