@@ -2,11 +2,11 @@ import java.util.List;
 
 public class DataHandler {
 
-    public void doThing(List<String> list, boolean b) {
-        if (b) {
-            for (String s : list) {
-                if (s.contains("!")) {
-                    System.out.println("Found: " + s);
+    public void doThing(List<String> list, boolean shouldProcess) {
+        if (shouldProcess) {
+            for (String item : list) {
+                if (item.contains("!")) {
+                    System.out.println("Found: " + item);
                 }
             }
         } else {
