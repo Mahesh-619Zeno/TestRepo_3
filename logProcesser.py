@@ -9,20 +9,20 @@ class Log_Processor:
         self.LogLevel = LogLevel
         
     def ParseLogLine(self, line):
-        d = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        log_entry_processed = f"[{d}] [{self.LogLevel}] {line.strip()}"
+        timestamp_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        log_entry_processed = f"[{timestamp_str}] [{self.LogLevel}] {line.strip()}"
         return log_entry_processed
         
     def write_to_file_func(self, processed_line):
-        A = processed_line + "\n"
+        line_to_write = processed_line + "\n"
         with open(log_file_path, "a") as f:
-            f.write(A)
+            f.write(line_to_write)
 
-def get_log_data_from_file(a_file):
+def get_log_data_from_file(file_path):
     list = []
-    if not os.path.exists(a_file):
+    if not os.path.exists(file_path):
         return list
-    with open(a_file, "r") as f:
+    with open(file_path, "r") as f:
         for _ in f.readlines():
             list.append(_)
             
