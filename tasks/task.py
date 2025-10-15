@@ -23,7 +23,7 @@ class Task:
 
     def time_to_deadline(self):
         if self.deadline:
-            deadline_dt = datetime.strptime(self.deadline, "%Y-%m-%d %H:%M")
+            deadline_datetime = datetime.strptime(self.deadline, "%Y-%m-%d %H:%M")
             delta = deadline_dt - datetime.now()
             return delta.total_seconds()
         return None
