@@ -15,10 +15,14 @@ class Task:
 
     def is_overdue(self):
         if self.deadline and self.status.lower() not in ("completed", "overdue"):
-            deadline_dt = datetime.strptime(self.deadline, "%Y-%m-%d %H:%M")
-            if datetime.now() > deadline_dt:
-                self.status = "Overdue"
-                return True
+            try:
+                deadline_dt = datetime.strptime(self.deadline, "%Y-%m-%d %H:%M")
+                if datetime.now() > deadline_dt:
+                    self.status = "Overdue"
+                    return True
+            except (ValueError, TypeError):
+                # Invalid format, so it can't be overdue. The method will return False.
+                pass
         return False
 
     def time_to_deadline(self):
