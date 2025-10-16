@@ -23,7 +23,7 @@ class Task:
     @staticmethod
     def from_dict(data: dict) -> 'Task':
         return Task(
-            title=data.get("title", ""),
+            title=data["title"],
             description=data.get("description", ""),
             priority=data.get("priority", "Medium"),
             status=data.get("status", "Pending")
