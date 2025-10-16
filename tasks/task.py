@@ -1,6 +1,7 @@
 import json
 import os
 
+# Path to the task data file
 DATA_FILE = os.path.join(os.path.dirname(__file__), "../data/tasks_data.json")
 
 class Task:
@@ -9,6 +10,9 @@ class Task:
         self.description = description
         self.priority = priority
         self.status = "Pending"  # Default status
+
+    def __repr__(self):
+        return f"Task(title={self.title}, priority={self.priority}, status={self.status})"
 
 class TaskManager:
     def __init__(self):
@@ -28,12 +32,20 @@ class TaskManager:
         } for t in self.tasks]
 
     def save_tasks(self):
-        data = [t.__dict__ for t in self.tasks]
-        with open(DATA_FILE, "w") as f:
-            json.dump(data, f, indent=2)
+        try:
+            os.makedirs(os.path.dirname(DATA_FILE), exist_ok=True)
+            data = [t.__dict__ for t in self.tasks]
+            with open(DATA_FILE, "w") as f:
+                json.dump(data, f, indent=2)
+        except Exception as e:
+            print(f"Error saving tasks: {e}")
 
     def load_tasks(self):
         if os.path.exists(DATA_FILE):
-            with open(DATA_FILE, "r") as f:
-                data = json.load(f)
-                self.tasks = [Task(**d) for d in data]
+            try:
+                with open(DATA_FILE, "r") as f:
+                    data = json.load(f)
+                    self.tasks = [Task(**d) for d in data]
+            except Exception as e:
+                print(f"Error loading tasks: {e}")
+                self.tasks = []
