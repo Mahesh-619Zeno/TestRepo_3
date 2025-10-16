@@ -37,3 +37,12 @@ class TaskManager:
             with open(DATA_FILE, "r") as f:
                 data = json.load(f)
                 self.tasks = [Task(**d) for d in data]
+
+    def delete_task(self, title):
+        """Delete all tasks that match the given title (case-insensitive)."""
+        initial_count = len(self.tasks)
+        self.tasks = [t for t in self.tasks if t.title.lower() != title.lower()]
+        if len(self.tasks) < initial_count:
+            self.save_tasks()
+            return True
+        return False
