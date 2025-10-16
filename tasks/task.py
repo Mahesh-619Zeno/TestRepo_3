@@ -33,6 +33,7 @@ class TaskManager:
             json.dump(data, f, indent=2)
 
     def load_tasks(self):
+        print(f"Data file path: {os.path.abspath(DATA_FILE)}")
         if os.path.exists(DATA_FILE):
             with open(DATA_FILE, "r") as f:
                 data = json.load(f)
