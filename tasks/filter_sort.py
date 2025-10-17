@@ -8,7 +8,7 @@ def filter_by_priority(task_manager, priority):
         return f"Invalid priority '{priority}'. Valid options: High, Medium, Low."
     results = [t for t in task_manager.tasks if t.priority.lower() == priority.lower()]
     if not results:
-        return f"No tasks found for priority '{priority}'."
+        return []
     return results
 
 def filter_by_category(task_manager, category):
