@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "task_id": "uuid-string",
+    "title": "Finish report",
+    "description": "Complete quarterly report",
+    "priority": "High",
+    "status": "Pending",
+    "user_id": "user1-uuid",
+    "shared_with": ["user2-uuid", "user3-uuid"]
+  }
+]
