@@ -1,0 +1,14 @@
+[
+  {
+    "template_id": "123e4567-e89b-12d3-a456-426614174000",
+    "base_task_info": {
+      "title": "Backup Database",
+      "description": "Perform daily DB backup",
+      "priority": "High"
+    },
+    "frequency": "Daily",
+    "recurrence_end_date": null,
+    "last_generated_at": "2025-10-15T00:00:00",
+    "active": true
+  }
+]
