@@ -1,0 +1,14 @@
+[
+  {
+    "user_id": "uuid-string",
+    "username": "admin",
+    "password": "hashed-password-or-plain-for-demo",
+    "role": "Admin"
+  },
+  {
+    "user_id": "uuid-string",
+    "username": "user1",
+    "password": "hashed-password",
+    "role": "User"
+  }
+]
