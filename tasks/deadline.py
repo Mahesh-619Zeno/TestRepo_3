@@ -12,7 +12,7 @@ def validate_due_date(due_date):
         return False
     return True
 
-def validate_reminder_time(due_date, reminder_minutes):
+def is_reminder_time_valid(due_date, reminder_minutes):
     """Validate that reminder time is before due date."""
     if due_date is None:
         # Cannot have reminder without due_date
