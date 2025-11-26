@@ -18,7 +18,7 @@ class Task:
         self.is_recurring = is_recurring
         self.recurrence_pattern = recurrence_pattern
 
-    def _parse_datetime(self, dt):
+    def _parse_datetime(self, datetime_value):
         if dt is None:
             return None
         if isinstance(dt, datetime):
