@@ -86,4 +86,4 @@ class UserManager:
             return None
         with open(SESSION_FILE, "r") as f:
             data = json.load(f)
-            return next((u for u in self.users if u.user_id == data["user_id"]), None)
+            return next((u for u in self.users if u.user_id == data.get("user_id")), None)
