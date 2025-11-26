@@ -60,12 +60,12 @@ class Task:
         if reminder_time is None:
             self.reminder_time = None
         else:
-            reminder_int = int(reminder_time)
+            reminder_in_minutes = int(reminder_time)
             if self.due_date:
-                reminder_dt = self.due_date - timedelta(minutes=reminder_int)
+                reminder_dt = self.due_date - timedelta(minutes=reminder_in_minutes)
                 if reminder_dt < datetime.now(pytz.UTC):
                     raise ValueError("Reminder time must be before due date and in future.")
-            self.reminder_time = reminder_int
+            self.reminder_time = reminder_in_minutes
 
 class TaskManager:
     def __init__(self):
