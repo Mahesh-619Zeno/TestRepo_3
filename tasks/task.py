@@ -43,7 +43,7 @@ class TaskManager:
         return d
 
     def delete_task(self, task_id):
-        for t in self.tasks:
+        for t in self.tasks[:]:
             if t.task_id == task_id:
                 if self.current_user.role != "Admin" and t.user_id != self.current_user.user_id:
                     return "Permission Denied: You cannot delete another user's task."
