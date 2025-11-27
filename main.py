@@ -105,8 +105,8 @@ def main():
                 new_status = input("New Status (Pending/In-Progress/Done): ").strip()
                 print(update_status(tm, title, new_status, user_can_edit=True))
             elif choice == "4":
-                task_id = input("Enter task ID to delete: ").strip()
-                print(tm.delete_task(task_id))
+                title = input("Enter task title to delete: ").strip()
+                print(tm.delete_task(title))
             elif choice == "5":
                 query = input("Enter search keyword: ").strip()
                 results = search_by_title(tm, query)
