@@ -7,8 +7,10 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("file_backup_service")
 
-SOURCE_DIR = "source_data"
-BACKUP_DIR = "backup_data"
+#SOURCE_DIR = "source_data"
+#BACKUP_DIR = "backup_data"
+SOURCE_DIR = os.environ.get("SOURCE_DIR", "source_data")
+BACKUP_DIR = os.environ.get("BACKUP_DIR", "backup_data")
 
 def create_sample_files():
     if not os.path.exists(SOURCE_DIR):
