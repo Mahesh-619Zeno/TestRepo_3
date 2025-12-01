@@ -6,7 +6,7 @@ def validate_due_date(due_date):
     now = datetime.now(pytz.UTC)
     if due_date is None:
         return True  # due_date optional
-    if not isinstance(due_date, datetime):
+    if not isinstance(due_date, datetime) or due_date.tzinfo is None:
         return False
     if due_date <= now:
         return False
