@@ -6,26 +6,63 @@ def main():
     manager = TaskManager()
     print("=== Welcome to Task Manager ===")
 
-    # Sample flow for iteration 1
-    # Add sample tasks
-    manager.add_task(Task("Finish Report", "Complete the financial report", "High"))
-    manager.add_task(Task("Email Client", "Send project updates", "Medium"))
-    manager.add_task(Task("Team Meeting", "Discuss project roadmap", "Low"))
+    while True:
+        print("\n--- Main Menu ---")
+        print("1. Add a task")
+        print("2. List all tasks")
+        print("3. Update task status")
+        print("4. Search tasks")
+        print("5. Delete a task")
+        print("6. Exit")
 
-    # List all tasks
-    print("\n--- All Tasks ---")
-    for t in manager.list_tasks():
-        print(t)
+        choice = input("Enter your choice: ").strip()
 
-    # Update status
-    print("\n--- Update Status ---")
-    print(update_status(manager, "Finish Report", "In-Progress"))
+        if choice == "1":
+            title = input("Enter title: ").strip()
+            desc = input("Enter description: ").strip()
+            priority = input("Enter priority (Low/Medium/High): ").strip() or "Medium"
+            if title:
+                manager.add_task(Task(title, desc, priority))
+                print(f"Task '{title}' added successfully.")
+            else:
+                print("Title cannot be empty.")
 
-    # Search tasks
-    print("\n--- Search by Title 'Team' ---")
-    results = search_by_title(manager, "Team")
-    for t in results:
-        print(vars(t))
+        elif choice == "2":
+            tasks = manager.list_tasks()
+            if not tasks:
+                print("No tasks available.")
+            else:
+                for t in tasks:
+                    print(t)
 
-if __name__ == "__main__":
-    main()
+        elif choice == "3":
+            title = input("Enter the title of the task to update: ").strip()
+            new_status = input("Enter new status (Pending/In-Progress/Completed): ").strip()
+            print(update_status(manager, title, new_status))
+
+        elif choice == "4":
+            query = input("Search by title keyword: ").strip()
+            results = search_by_title(manager, query)
+            if results:
+                for t in results:
+                    print(vars(t))
+            else:
+                print("No matching tasks found.")
+
+        elif choice == "5":
+            title = input("Enter the title of the task to delete: ").strip()
+            if not title:
+                print("Invalid input. Task title cannot be empty.")
+            else:
+                deleted = manager.delete_task(title)
+                if deleted:
+                    print(f"Task '{title}' deleted successfully.")
+                else:
+                    print(f"Task with title '{title}' not found.")
+
+        elif choice == "6":
+            print("Exiting Task Manager. Goodbye!")
+            break
+
+        else:
+            print("Invalid choice. Please try again.")
