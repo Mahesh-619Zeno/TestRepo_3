@@ -57,7 +57,7 @@ def main():
                 results = search_by_priority(manager, priority_input)
             if results:
                 for t in results:
-                    print(vars(t))
+                    print(t)
             else:
                 print("No matching tasks found.")
         elif command == "exit":
