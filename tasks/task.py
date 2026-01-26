@@ -4,11 +4,14 @@ import os
 DATA_FILE = os.path.join(os.path.dirname(__file__), "../data/tasks_data.json")
 
 class Task:
-    def __init__(self, title, description="", priority="Medium"):
+    def __init__(self, title, description="", priority="Medium", status="Pending",
+                 due_date=None, reminder_time=None):
         self.title = title
         self.description = description
         self.priority = priority
-        self.status = "Pending"  # Default status
+        self.status = status
+        self.due_date = due_date            # ISO 8601 string or None
+        self.reminder_time = reminder_time  # int minutes or None
 
 class TaskManager:
     def __init__(self):
