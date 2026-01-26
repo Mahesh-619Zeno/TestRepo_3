@@ -1,0 +1,14 @@
+[
+  {
+    "user_id": "admin-id-placeholder",
+    "username": "admin",
+"password_hash": "LOADED_AT_RUNTIME",
+    "role": "Admin"
+  },
+  {
+    "user_id": "user-id-placeholder",
+    "username": "jane",
+    "password_hash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+    "role": "User"
+  }
+]
