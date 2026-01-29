@@ -4,7 +4,6 @@ import uuid
 import hashlib
 
 DATA_FILE = os.path.join(os.path.dirname(__file__), "../data/users_data.json")
-SESSION_FILE = os.path.join(os.path.dirname(__file__), "../data/current_session.json")
 
 class User:
     def __init__(self, user_id, username, password_hash, role="User"):
@@ -69,21 +68,5 @@ class UserManager:
         hashed = self.hash_password(password)
         for u in self.users:
             if u.username == username and u.password_hash == hashed:
-                self._save_session(u)
                 return u
         return None
-
-    def _save_session(self, user):
-        with open(SESSION_FILE, "w") as f:
-            json.dump({"user_id": user.user_id, "username": user.username, "role": user.role}, f, indent=2)
-
-    def logout(self):
-        if os.path.exists(SESSION_FILE):
-            os.remove(SESSION_FILE)
-
-    def get_current_user(self):
-        if not os.path.exists(SESSION_FILE):
-            return None
-        with open(SESSION_FILE, "r") as f:
-            data = json.load(f)
-            return next((u for u in self.users if u.user_id == data["user_id"]), None)
