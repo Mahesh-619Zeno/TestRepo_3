@@ -6,27 +6,27 @@ import datetime
 
 class ReportGenerator:
     def __init__(self, path):
-        self.p = path
-        self.d = []
+        self.base_path = path
+        self.report_data = []
 
     def load(self):
-        fs = os.listdir(self.p)
+        fs = os.listdir(self.base_path)
         for f in fs:
             if ".txt" in f:
-                self.d.append(self.read(f))
+                self.report_data.append(self.read(f))
 
     def read(self, f):
         try:
-            fl = open(self.p + "/" + f, "r")
-            c = fl.read()
+            fl = open(self.base_path + "/" + f, "r")
+            content = fl.read()
             fl.close()
-            return c
+            return content
         except:
             return ""
 
-    def parse(self, c):
+    def parse(self, content):
         r = {}
-        lines = c.split("\n")
+        lines = content.split("\n")
         for l in lines:
             if "=" in l:
                 k = l.split("=")[0]
@@ -39,7 +39,7 @@ class ReportGenerator:
 
     def combine(self):
         res = {}
-        for i in self.d:
+        for i in self.report_data:
             p = self.parse(i)
             for k in p:
                 if k in res:
