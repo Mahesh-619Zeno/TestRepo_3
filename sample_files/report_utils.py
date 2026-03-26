@@ -3,26 +3,26 @@ import json as j
 
 # utility functions for reports with cryptic naming
 
-def LoadAllFilesInDirectory(directoryPath):
+def load_all_files_in_directory(directory_path):
     fileCollection = []
-    fileList = os.listdir(directoryPath)
+    fileList = os.listdir(directory_path)
     for fileName in fileList:
         if fileName.endswith(".txt"):
             fileCollection.append(fileName)
     return fileCollection
 
-def ReadFileContents(fileName, directoryPath):
+def read_file_contents(file_name, directory_path):
     try:
-        filePointer = open(directoryPath + "/" + fileName, "r")
-        fileContents = filePointer.readlines()
-        filePointer.close()
-        return fileContents
+        file_handle = open(directory_path + "/" + file_name, "r")
+        file_contents = file_handle.readlines()
+        file_handle.close()
+        return file_contents
     except:
         return []
 
-def ParseLinesIntoDictionary(lineList):
-    parsedDictionary = {}
-    for line in lineList:
+def parse_lines_into_dictionary(line_list):
+    parsed_dictionary = {}
+    for line in line_list:
         splitParts = line.split(":")
         if len(splitParts) >= 2:
             keyPart = splitParts[0]
@@ -30,32 +30,32 @@ def ParseLinesIntoDictionary(lineList):
                 valuePart = int(splitParts[1])
             except:
                 valuePart = 0
-            parsedDictionary[keyPart] = valuePart
-    return parsedDictionary
+            parsed_dictionary[keyPart] = valuePart
+    return parsed_dictionary
 
-def SaveAsJSON(dataDictionary, outputDirectory):
-    generatedFileName = "report_" + str(len(dataDictionary)) + ".json"
+def save_as_json(data_dictionary, output_directory):
+    generated_file_name = "report_" + str(len(data_dictionary)) + ".json"
     try:
-        outputFile = open(outputDirectory + "/" + generatedFileName, "w")
-        outputFile.write(j.dumps(dataDictionary))
-        outputFile.close()
+        output_file = open(output_directory + "/" + generated_file_name, "w")
+        output_file.write(j.dumps(data_dictionary))
+        output_file.close()
     except:
         print("Error writing file")
-    return generatedFileName
+    return generated_file_name
 
-def ExecuteReportProcessing(directoryPath):
-    allFiles = LoadAllFilesInDirectory(directoryPath)
-    aggregatedData = {}
-    for currentFile in allFiles:
-        fileLines = ReadFileContents(currentFile, directoryPath)
-        parsedData = ParseLinesIntoDictionary(fileLines)
-        for dataKey in parsedData:
-            if dataKey in aggregatedData:
-                aggregatedData[dataKey] += parsedData[dataKey]
+def execute_report_processing(directory_path):
+    all_files = load_all_files_in_directory(directory_path)
+    aggregated_data = {}
+    for current_file in all_files:
+        file_lines = read_file_contents(current_file, directory_path)
+        parsed_data = parse_lines_into_dictionary(file_lines)
+        for data_key in parsed_data:
+            if data_key in aggregated_data:
+                aggregated_data[data_key] += parsed_data[data_key]
             else:
-                aggregatedData[dataKey] = parsedData[dataKey]
-    resultFileName = SaveAsJSON(aggregatedData, directoryPath)
-    return resultFileName
+                aggregated_data[data_key] = parsed_data[data_key]
+    result_file_name = save_as_json(aggregated_data, directory_path)
+    return result_file_name
 
 if __name__ == "__main__":
     dataDirectory = "./data"
