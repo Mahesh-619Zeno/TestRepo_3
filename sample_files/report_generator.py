@@ -57,7 +57,7 @@ def makeStr(d):
 
 
 def save(r, p):
-    nm = "report_" + str(datetime.datetime.now().second) + ".json"
+    nm = "report_" + datetime.datetime.now().strftime("%Y%m%d_%H%M%S_%f") + ".json"
     try:
         f = open(p + "/" + nm, "w")
         f.write(j.dumps(r))
