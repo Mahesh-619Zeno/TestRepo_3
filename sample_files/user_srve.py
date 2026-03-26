@@ -3,7 +3,7 @@
 import datetime as dt
 
 
-def process_user_data(user_list, process_type):
+def filter_and_format_user_data(user_list, process_type):
     res = []
 
     for i in user_list:
@@ -60,7 +60,7 @@ def mn():
     ]
 
     t = 1
-    out = process_user_data(data, t)
+    out = filter_and_format_user_data(data, t)
 
     upd(out)
 
