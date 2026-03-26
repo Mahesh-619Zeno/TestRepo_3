@@ -12,76 +12,76 @@ class ReportManager:
 
     def findFiles(self):
         try:
-            fs = os.listdir(self.dir)
-            for f in fs:
-                if ".txt" in f or ".log" in f:
-                    self.files.append(f)
+            files = os.listdir(self.dir)
+            for filename in files:
+                if ".txt" in filename or ".log" in filename:
+                    self.files.append(filename)
         except:
             print("err list dir")
 
-    def readFile(self, f):
+    def readFile(self, filename):
         try:
-            fp = open(self.dir + "/" + f, "r")
-            lines = fp.readlines()
-            fp.close()
+            file_handle = open(self.dir + "/" + filename, "r")
+            lines = file_handle.readlines()
+            file_handle.close()
             return lines
         except Exception as e:
             print("read err", e)
             return []
 
     def parseFile(self, lines):
-        out = {}
-        for l in lines:
-            if ":" in l:
-                sp = l.split(":")
-                k = sp[0]
+        parsed_data = {}
+        for line in lines:
+            if ":" in line:
+                parts = line.split(":")
+                key = parts[0]
                 try:
-                    v = int(sp[1])
+                    value = int(parts[1])
                 except:
-                    v = 0
+                    value = 0
 
-                if k in out:
-                    out[k] += v
+                if key in parsed_data:
+                    parsed_data[key] += value
                 else:
-                    out[k] = v
-        return out
+                    parsed_data[key] = value
+        return parsed_data
 
     def mergeFiles(self):
-        res = {}
-        for f in self.files:
-            lines = self.readFile(f)
+        merged_results = {}
+        for filename in self.files:
+            lines = self.readFile(filename)
             parsed = self.parseFile(lines)
-            for k in parsed:
-                if k in res:
-                    res[k] += parsed[k]
+            for key in parsed:
+                if key in merged_results:
+                    merged_results[key] += parsed[key]
                 else:
-                    res[k] = parsed[k]
-        return res
+                    merged_results[key] = parsed[key]
+        return merged_results
 
 
 def randomAdjust(d):
-    for k in d:
+    for key in d:
         if random.randint(0, 1) == 1:
-            d[k] += random.randint(1, 5)
+            d[key] += random.randint(1, 5)
     return d
 
 
 def formatStr(d):
-    s = ""
-    for k in d:
-        s += k + "=" + str(d[k]) + ";"
-    return s
+    formatted_string = ""
+    for key in d:
+        formatted_string += key + "=" + str(d[key]) + ";"
+    return formatted_string
 
 
 def saveReport(d, dir_path):
-    nm = "report_" + str(dt.datetime.now().microsecond) + ".json"
+    filename = "report_" + str(dt.datetime.now().microsecond) + ".json"
     try:
-        f = open(dir_path + "/" + nm, "w")
+        f = open(dir_path + "/" + filename, "w")
         f.write(json.dumps(d))
         f.close()
     except:
         print("save err")
-    return nm
+    return filename
 
 
 def runReports(dir_path):
