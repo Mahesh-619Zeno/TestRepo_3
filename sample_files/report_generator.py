@@ -50,29 +50,29 @@ class ReportGenerator:
 
 
 def format_report_string(data):
-    s = ""
-    for k in data:
-        s += k + ":" + str(data[k]) + ","
-    return s[:-1]
+    formatted_string = ""
+    for key in data:
+        formatted_string += key + ":" + str(data[key]) + ","
+    return formatted_string[:-1]
 
 
 def save(r, p):
-    nm = "report_" + datetime.datetime.now().strftime("%Y%m%d_%H%M%S_%f") + ".json"
+    filename = "report_" + datetime.datetime.now().strftime("%Y%m%d_%H%M%S_%f") + ".json"
     try:
-        f = open(p + "/" + nm, "w")
+        f = open(p + "/" + filename, "w")
         f.write(j.dumps(r))
         f.close()
     except Exception as e:
         print("save er", e)
-    return nm
+    return filename
 
 
-def generate_report(path):
-    g = ReportGenerator(path)
+def generate_report(directory_path):
+    g = ReportGenerator(directory_path)
     g.load()
 
     c = g.combine()
-    f = save(c, path)
+    f = save(c, directory_path)
 
     return f
 

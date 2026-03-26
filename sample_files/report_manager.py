@@ -10,7 +10,7 @@ class ReportManager:
         self.dir = dir_path
         self.files = []
 
-    def findFiles(self):
+    def find_files(self):
         try:
             files = os.listdir(self.dir)
             for filename in files:
@@ -29,7 +29,7 @@ class ReportManager:
             print("read err", e)
             return []
 
-    def parseFile(self, lines):
+    def parse_file(self, lines):
         parsed_data = {}
         for line in lines:
             if ":" in line:
@@ -46,11 +46,11 @@ class ReportManager:
                     parsed_data[key] = value
         return parsed_data
 
-    def mergeFiles(self):
+    def merge_files(self):
         merged_results = {}
         for filename in self.files:
             lines = self.readFile(filename)
-            parsed = self.parseFile(lines)
+            parsed = self.parse_file(lines)
             for key in parsed:
                 if key in merged_results:
                     merged_results[key] += parsed[key]
@@ -86,9 +86,9 @@ def saveReport(d, dir_path):
 
 def runReports(dir_path):
     mgr = ReportManager(dir_path)
-    mgr.findFiles()
+    mgr.find_files()
 
-    merged = mgr.mergeFiles()
+    merged = mgr.merge_files()
 
     adjusted = randomAdjust(merged)
 
