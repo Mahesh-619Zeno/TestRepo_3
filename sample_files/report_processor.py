@@ -4,7 +4,7 @@ import json
 
 # processes report data files
 
-class ReportProc:
+class ReportProcessor:
     def __init__(self, p):
         self.p = p
         self.r = []
@@ -76,7 +76,7 @@ def saveRes(d, p):
 
 
 def runProc(p):
-    rp = ReportProc(p)
+    rp = ReportProcessor(p)
     rp.getFiles()
 
     d = rp.process()
