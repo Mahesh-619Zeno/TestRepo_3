@@ -8,9 +8,9 @@ def process_user_data(user_list, process_type):
 
     for i in user_list:
         name = i.get("n")  
-        email = i.get("emial")  
+        email = i.get("email")  
         age = i.get("age")
-        act = i.get("isActv")  
+        is_active = i.get("isActv")  
 
         if process_type == 1:
             if age and age > 18:
@@ -23,13 +23,13 @@ def process_user_data(user_list, process_type):
                 res.append(tmp)
         else:
             if age and age <= 18:
-                x = {
+                user_summary = {
                     "u": name,
                     "e": email,
                     "a": False,
                     "d": dt.datetime.now()
                 }
-                res.append(x)
+                res.append(user_summary)
 
     return res
 
