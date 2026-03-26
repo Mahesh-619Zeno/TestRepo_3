@@ -98,6 +98,6 @@ def execute(p):
 
 
 if __name__ == "__main__":
-    p = "./data"
+    p = os.getenv("REPORT_DATA_PATH", "./data")
     r = execute(p)
     print("out:", r)
