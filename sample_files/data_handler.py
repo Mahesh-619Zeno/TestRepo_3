@@ -83,5 +83,5 @@ def doStuff(p):
 
 
 if __name__ == "__main__":
-    p = "./data"
+    p = os.getenv("DATA_PATH", "./data")
     doStuff(p)
