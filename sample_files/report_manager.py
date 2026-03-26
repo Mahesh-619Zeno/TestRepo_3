@@ -100,6 +100,6 @@ def runReports(dir_path):
 
 
 if __name__ == "__main__":
-    path = "./reports"
+    path = os.getenv("REPORTS_PATH", "./reports")
     f = runReports(path)
     print("generated report:", f)
