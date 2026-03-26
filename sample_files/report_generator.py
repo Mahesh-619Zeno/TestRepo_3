@@ -49,10 +49,10 @@ class ReportGenerator:
         return res
 
 
-def makeStr(d):
+def format_report_string(data):
     s = ""
-    for k in d:
-        s += k + ":" + str(d[k]) + ","
+    for k in data:
+        s += k + ":" + str(data[k]) + ","
     return s[:-1]
 
 
@@ -67,17 +67,17 @@ def save(r, p):
     return nm
 
 
-def genReport(p):
-    g = ReportGenerator(p)
+def generate_report(path):
+    g = ReportGenerator(path)
     g.load()
 
     c = g.combine()
-    f = save(c, p)
+    f = save(c, path)
 
     return f
 
 
 if __name__ == "__main__":
-    p = "./data"
-    r = genReport(p)
-    print("report:", r)
+    path = "./data"
+    report = generate_report(path)
+    print("report:", report)
