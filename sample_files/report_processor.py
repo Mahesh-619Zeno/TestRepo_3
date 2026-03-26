@@ -20,7 +20,7 @@ class ReportProc:
 
     def readFile(self, f):
         try:
-            fp = open(self.p + "/" + f, "r")
+            fp = open(os.path.join(self.p, f), "r")
             d = fp.readlines()
             fp.close()
             return d
