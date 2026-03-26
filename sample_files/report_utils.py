@@ -13,7 +13,7 @@ def load_all_files_in_directory(directory_path):
 
 def read_file_contents(file_name, directory_path):
     try:
-        file_handle = open(directory_path + "/" + file_name, "r")
+        file_handle = open(os.path.join(directory_path, file_name), "r")
         file_contents = file_handle.readlines()
         file_handle.close()
         return file_contents
