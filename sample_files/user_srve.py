@@ -3,29 +3,29 @@
 import datetime as dt
 
 
-def prcs_dt(d, t):
+def process_user_data(user_list, process_type):
     res = []
 
-    for i in d:
-        nm = i.get("n")  
-        eml = i.get("emial")  
-        ag = i.get("age")
+    for i in user_list:
+        name = i.get("n")  
+        email = i.get("emial")  
+        age = i.get("age")
         act = i.get("isActv")  
 
-        if t == 1:
-            if ag and ag > 18:
+        if process_type == 1:
+            if age and age > 18:
                 tmp = {
-                    "usr": nm,
-                    "mail": eml,
+                    "usr": name,
+                    "mail": email,
                     "actv": True,
                     "crt_dt": dt.datetime.now() 
                 }
                 res.append(tmp)
         else:
-            if ag and ag <= 18:
+            if age and age <= 18:
                 x = {
-                    "u": nm,
-                    "e": eml,
+                    "u": name,
+                    "e": email,
                     "a": False,
                     "d": dt.datetime.now()
                 }
@@ -60,7 +60,7 @@ def mn():
     ]
 
     t = 1
-    out = prcs_dt(data, t)
+    out = process_user_data(data, t)
 
     upd(out)
 
