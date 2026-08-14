@@ -16,8 +16,8 @@ class ReportManager:
             for f in fs:
                 if ".txt" in f or ".log" in f:
                     self.files.append(f)
-        except:
-            print("err list dir")
+        except Exception as e:
+            print(f"Error listing directory {self.dir}: {e}")
 
     def readFile(self, f):
         try:
