@@ -60,10 +60,9 @@ class ReportManager:
 
 
 def randomAdjust(d):
-    for k in d:
-        if random.randint(0, 1) == 1:
-            d[k] += random.randint(1, 5)
-    return d
+    if not d or not isinstance(d, dict):
+        print("Invalid input: d must be a non-empty dictionary")
+        return d
 
 
 def formatStr(d):
