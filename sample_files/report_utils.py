@@ -17,7 +17,7 @@ def read_file_contents(file_name, directory_path):
         file_contents = file_handle.readlines()
         file_handle.close()
         return file_contents
-    except:
+    except (IOError, OSError):
         return []
 
 def parse_lines_into_dictionary(line_list):
