@@ -30,6 +30,8 @@ class ReportProcessor:
     def parseLines(self, lns):
         out = {}
         for l in lns:
+            if not l or not isinstance(l, str) or not l.strip():
+                continue
             sp = l.split(":")
             if len(sp) >= 2:
                 k = sp[0]
