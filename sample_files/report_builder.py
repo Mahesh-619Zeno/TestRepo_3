@@ -34,6 +34,8 @@ class ReportBuilder:
         for x in l:
             if "=" in x:
                 sp = x.split("=")
+                if len(sp) < 2:
+                    continue
                 k = sp[0]
                 try:
                     v = int(sp[1])
