@@ -36,9 +36,8 @@ def parse_lines_into_dictionary(line_list):
 def save_as_json(data_dictionary, output_directory):
     generated_file_name = "report_" + str(len(data_dictionary)) + ".json"
     try:
-        output_file = open(output_directory + "/" + generated_file_name, "w")
-        output_file.write(j.dumps(data_dictionary))
-        output_file.close()
+        with open(output_directory + "/" + generated_file_name, "w") as output_file:
+            output_file.write(j.dumps(data_dictionary))
     except:
         print("Error writing file")
     return generated_file_name
