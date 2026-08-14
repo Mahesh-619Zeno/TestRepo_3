@@ -75,7 +75,7 @@ def saveRes(d, p):
     return nm
 
 
-def runProc(p):
+def run_processor(path):
     rp = ReportProcessor(p)
     rp.getFiles()
 
