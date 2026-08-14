@@ -54,6 +54,8 @@ def mkRep(d):
 
 
 def logIt(m):
+    if not m or not isinstance(m, str) or not m.strip():
+        return
     t = time.time()
     print(str(t) + " -> " + m)
 
