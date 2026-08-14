@@ -100,6 +100,6 @@ def run(p):
 
 
 if __name__ == "__main__":
-    p = os.getenv("REPORT_BUILDER_LOG_PATH", "./logs")
+    log_directory_path = os.getenv("REPORT_BUILDER_LOG_PATH", "./logs")
     f = run(p)
     print("file:", f)
